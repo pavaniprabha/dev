@@ -1,0 +1,133 @@
+
+                                    		  ASSIGNMENT
+
+
+1)  List out 5 files in your system which consuming most of the disk space
+
+      du -ah | sort -n -r | head -n 5
+             
+               or
+
+      du -sh  | sort -n -r | head -n 5
+
+       
+  to get list of files with maximum depth under particular partition
+
+       
+     du -ah --max-depth=3 /home | sort -n -r | head -n 
+
+
+         du command: Estimate file space usage.
+	-h : Print sizes in human-readable format (e.g., 10MB).
+	-S : Do not include the size of subdirectories.
+	-s : Display only a total for each argument.
+	sort command : sort lines of text files.
+	-r : Reverse the result of comparisons.
+	-h : Compare human readable numbers (e.g., 2K, 1G).
+	head : Output the first part of files.
+	maxdepth levels : Descend at most levels (a non-negative integer) of directories below the starting-points. -maxdepth means 				apply the tests and actions from the starting-points.
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+2) Create one common folder in such way that anyone can create files inside that independently and should not be able to delete other users files from that common folder.
+	
+		 -mkdir directory/
+  	 
+	To create a directory we use mkdir command
+    	
+	  	 -chmod 1777 directory/
+
+       The chmod (short for change mode) command is used to manage file system access permissions on Unix and Unix-like systems. There are three 		basic file system permissions, or modes, to files and directories: read (r) write (w).
+       
+           u -users, g- group, o - others
+
+             4 - used to read
+	     2 - used to write
+	     1 - used to execute
+    
+        combining all (4+2+1) = 7 
+
+     So, 777 means users, group and others can execute, read and write files. 
+     
+     sticky bit(t) here we use sticky bit 
+
+     It is a permission bit where only owner can delete files or rename files. Others cannot have access to  delete other user files.
+ 
+     Adding 1 to 777 (1777) means only root user or owner can delete files in directory.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+  
+3) Create user name "shubham" and add that user in the group "adm"
+      a) Create folder /data , change owner and group as  "root:adm
+      b) Change /data permission such a way that user can able to write data in this folder and ownership of files or folder which you creates in 	 this folder should be same as parent folder i.e /data folder permission (root:adm)
+
+
+      to create user  
+
+     -sudo useradd user_name
+     -sudo useradd pavani
+
+      to create group 
+
+     -sudo groupadd group_name
+     -sudo groupadd adm
+
+
+      To add user to the group
+
+       -sudo useradd -G group_name user_name
+       -sudo useradd -G adm pavani
+
+a) 
+
+      Change the Owner and Group of a File
+
+	To change both the owner and the group of a file use the chown command followed by the new owner and group separated by a colon (:) with 		no intervening spaces and the target file.
+
+       
+      -chown [OPTIONS] USER:GROUP FILE(s)
+
+	chown command changes user ownership of a file, directory, or link in Linux
+
+	[OPTIONS] – the command can be used with or without additional options.
+	[USER] – the username or the numeric user ID of the new owner of a file.
+	[:] – use the colon when changing a group of a file.
+	[GROUP] – changing the group ownership of a file is optional.
+	FILE – the target file.
+
+
+b)
+        -chmod permissions filename       
+
+        -chmod 664 test.txt
+
+        </data>#
+        rw_rw_r  root adm test.txt
+ 
+
+	r = read permission
+	w = write permission
+	x = execute permission
+	– = no permission
+
+       chmod command(change mode) is use to manage file access permissions.Changing the file mode bits according to respective mode
+
+       rw-rw-r-- means 664
+   
+           -user and group can read and write but cant execute.
+           
+           -others can read only.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+         
+     
+
+      
+   
+
+		
+
+
+
+
+
